@@ -1,0 +1,14 @@
+(Window
+    :name = (string "file")
+    :theme = app.primary_dark # the theme attribute can be set for any component at or within Window
+    :size = [(div (property "device:resolution_x") 2) (div (property "device:resolution_y") 2)]
+    :resizable = true
+    # here we are creating a canvas inside of a window, adding components does not require :whatever = (Stuff ...)
+    # canvases are where the actual UI gets drawn to, note that the canvas of a window can be swapped at any time
+    (Canvas
+        (VStack :name = "mystack" :alignment = "center"
+            (Text :name = "text_box" app.strings["hello"])
+            (Button :action = "button_clicked" app.strings["button"])
+        )
+    )
+)

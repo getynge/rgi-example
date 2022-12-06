@@ -1,0 +1,5 @@
+(Shapes
+    :small = (Rectangle :corner_radius = "4dp" :content_padding = "2dp")
+    :medium = (Rectangle :corner_radius = "8dp" :content_padding = "2dp")
+    :large = (Rectangle :corner_radius = "12dp" :content_padding = "2dp")
+)

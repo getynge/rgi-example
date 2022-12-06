@@ -1,0 +1,25 @@
+# The app section is where we describe all assetes available to our app
+(App 
+    :name = "app" # app resources (strings, windows, themes, etc) are accessed by the apps name, usually just "app"
+    :strings = (from_locale "strings-{}.toml") # from_locale is a directive that loads the appropriate file for the current locale
+    :windows = [
+        (from "primary-window.rgi")
+    ] # windows is a list of windows the app has open on start, if left blank the runtime is left to assign windows
+    # themes describe the styles applied throughout the entire app
+    # themes can be defined inside any block 
+    :themes = [
+        "primary_dark": (Theme 
+            :name = (string "key")
+            :base = "material_dark" # note that base does not mean "extends from", base means "copies attributes of"
+            :font = (from_locale "font-{}.txt")
+            :shapes = (from "shapes.rgi")
+        )
+        # the below where clause allows us to use all settings from primary dark, but acting as though the base of
+        # primary dark was "material_light" instead of "material_dark"
+        "primary_light": (Theme :base = (where :base = "material_light" app.themes["primary_dark"]) :name = (string "key"))
+    ]
+    # status indicates the kind of status icon this has, can be "none", "basic", or "graphical"
+    # basic means all menu items are assigned programmatically, with system default rendering
+    # graphical means menu items are rendered by a component, can be defined here or in a seperate file
+    :status = "basic" 
+)
